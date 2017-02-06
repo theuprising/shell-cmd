@@ -1,9 +1,11 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "shell-cmd",
   "author": "Andrew J. Monks <a@monks.co>",
   "license": "ISC",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "babel src -d lib"
   },
