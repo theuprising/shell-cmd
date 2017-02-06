@@ -3,6 +3,7 @@
   "name": "shell-cmd",
   "author": "Andrew J. Monks <a@monks.co>",
   "license": "ISC",
+  "files": ["lib"],
   "scripts": {
     "build": "babel src -d lib"
   },
