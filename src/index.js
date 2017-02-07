@@ -1,7 +1,5 @@
 import { spawn } from 'child_process'
 
-const id = x => x
-
 /**
  * @name exec
  * @sig `string -> Promise<{ stdout: string, stderr: string, code: number }>`
@@ -13,8 +11,8 @@ const id = x => x
 
 const defaultOpts = {
   shell: '/bin/bash',
-  onStdout: id,
-  onErr: id
+  onStdout: undefined,
+  onErr: undefined
 }
 
 const exec = (cmd, _opts) =>
@@ -28,8 +26,14 @@ const exec = (cmd, _opts) =>
       code: ''
     }
 
-    p.stdout.on('data', data => { opts.onStdout(data); output.stdout += data })
-    p.stderr.on('data', data => { opts.onStderr(data); output.stderr += data })
+    p.stdout.on('data', data => {
+      output.stdout += data
+      if (typeof opts.onStdout === 'function') opts.onStdout(data)
+    })
+    p.stderr.on('data', data => {
+      output.stderr += data
+      if (typeof opts.onStderr === 'function') opts.onStderr(data)
+    })
 
     p.on('close', code => {
       output.code = code
