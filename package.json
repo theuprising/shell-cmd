@@ -7,7 +7,7 @@
     "lib"
   ],
   "scripts": {
-    "publish": "np --no-cleanup",
+    "quick-publish": "np --no-cleanup",
     "build": "babel src -d lib"
   },
   "main": "lib/index.js",
