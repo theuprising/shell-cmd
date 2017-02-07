@@ -11,9 +11,15 @@ const id = x => x
  * const {stdout, stderr, code} = await exec('ls -a')
  */
 
+const defaultOpts = {
+  shell: '/bin/bash',
+  onStdout: id,
+  onErr: id
+}
+
 const exec = (cmd, _opts) =>
   new Promise((resolve, reject) => {
-    const opts = {shell: '/bin/bash', ...opts, onStdout: id, onErr: id}
+    const opts = {...defaultOpts, ..._opts}
     const p = spawn(cmd, opts)
 
     let output = {
