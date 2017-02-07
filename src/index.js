@@ -19,7 +19,7 @@ const defaultOpts = {
 
 const exec = (cmd, _opts) =>
   new Promise((resolve, reject) => {
-    const opts = {...defaultOpts, ..._opts}
+    const opts = _opts ? {...defaultOpts, ..._opts} : defaultOpts
     const p = spawn(cmd, opts)
 
     let output = {
